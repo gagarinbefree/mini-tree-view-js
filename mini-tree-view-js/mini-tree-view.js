@@ -11,6 +11,7 @@
         }
     }
 
+
     minitree.prototype.init = function (config) {
         if(this.isNullOrUndefined(config))
             throw new Error("The object config not specified");
