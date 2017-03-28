@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="mini-tree-view.js"></script>
+</head>
+<body>
+
+<div id="container"></div>            
+
+<script type="text/javascript">
+    window.onload = function () {
+        var data = [
+            {
+                name: "Level 1 Leaf 1",
+                childs: [
+                    {
+                        name: "Level 2 Leaf 1",
+                        childs: [
+                            {
+                                name: "Level 3 Leaf 1"
+                            },
+                            {
+                                name: "Level 3 Leaf 2",
+                                childs: [
+                                    {
+                                        name: "Level 4 Leaf 1"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "Level 2 Leaf 2"
+                    }
+                ]
+            },
+            {
+                name: "Level 1 Leaf 2",
+                childs: [
+                    {
+                        name: "Level 2 Leaf 1"
+                    }
+                ]
+            },
+            {
+                name: "Level 1 Leaf 3"
+            }
+        ];
+
+
+        var tree = new minitree(data, {
+            container: document.getElementById('container'),
+            marginLeft: 50
+        });
+    }
+</script>
+</body>
+</html>
