@@ -5,7 +5,7 @@
             this.addIeExtentions();
             this.init(config);
             this.draw(data, 0);
-        }
+        } 
         catch (e) {
             self.onerror(e.message);
         }
