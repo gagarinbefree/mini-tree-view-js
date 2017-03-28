@@ -8,6 +8,7 @@
         } 
         catch (e) {
             self.onerror(e.message);
+
         }
     }
 
