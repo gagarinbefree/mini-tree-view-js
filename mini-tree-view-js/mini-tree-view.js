@@ -2,6 +2,7 @@
     function minitree(data, config) {
         var self = this;
         try {
+            this.addIeExtentions();
             this.init(config);
             this.draw(data, 0);
         } 
