@@ -2,22 +2,21 @@
     function minitree(data, config) {
         var self = this;
         try {
-            this.addIeExtentions();
             this.init(config);
             this.draw(data, 0);
         } 
         catch (e) {
             self.onerror(e.message);
-
         }
     }
 
 
     minitree.prototype.init = function (config) {
         if(this.isNullOrUndefined(config))
-            throw new Error("The object config not specified");
+            throw new Error("The object click config not specified");
 
-        this.container = config.container;        
+        this.container = config.container;
+        this.clickHandler = config.clickHandler;
     }
 
     minitree.prototype.draw = function (data, level, parent) {
@@ -28,7 +27,8 @@
         for (var ii = 0; ii < data.length; ii++) {
             var item = data[ii];
 
-            var leaf = this.createLeaf(item.name, level);
+            var leaf = this.createLeaf(item, level);
+            this.addEventListener(leaf, "click", this.leafClickHandler.bind(this));
             this.addLeaf(leaf, parent, ul);
 
             if (this.isArray(item.childs) && item.childs.length > 0)
@@ -36,24 +36,40 @@
         }
     }
 
-    minitree.prototype.createLeaf = function (name, level) {
+    minitree.prototype.createLeaf = function (item, level) {
         var leaf = document.createElement('li');
-        leaf.innerHTML = name;
+        leaf.innerHTML = item.name;
+
+        if (!this.isNullOrUndefined(item.id))
+            leaf.id = item.id;
+
         if (level > 0)
             leaf.style.display = "none";
 
-        this.addEventListener(leaf, "click", this.leafClickHandler.bind(this));
+        leaf.__isLeaf = !(!this.isNullOrUndefined(item.childs) && this.isArray(item.childs) && item.childs.length > 0)
 
         return leaf;
     }
 
-    minitree.prototype.leafClickHandler = function (e) {
+    minitree.prototype.isLeaf = function (leaf) {
+        if (this.isNullOrUndefined(leaf.__isLeaf))
+            return true;
+
+        return leaf.__isLeaf;
+    }
+
+    minitree.prototype.leafClickHandler = function (e) {       
         var target = this.getEventTarget(e);
         var uls = target.children;
         if (uls.length > 0) {
             var lis = uls[0].children;
             this.setInvertDisplayStyle(lis);
-        }        
+        }
+
+        e.cancelBubble = true;
+        
+        if (typeof this.clickHandler === "function")
+            this.clickHandler(e);
     }
 
     minitree.prototype.setInvertDisplayStyle = function (lis) {
@@ -74,13 +90,12 @@
         else
             parent.appendChild(ul);
     }
-
+    
     minitree.prototype.addEventListener = function (o, e, f) {
-        if ('addEventListener' in window) {
+        if ('addEventListener' in window)
             o.addEventListener(e, f, false);
-        } else if ('attachEvent' in window) {//IE
+        else if ('attachEvent' in window) //IE
             o.attachEvent('on' + e, f);
-        }
     }
 
     minitree.prototype.onerror = function (msg) {

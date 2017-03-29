@@ -13,46 +13,50 @@
     window.onload = function () {
         var data = [
             {
-                name: "Level 1 Leaf 1",
+                name: "1 Level 1 Leaf 1",
                 childs: [
                     {
-                        name: "Level 2 Leaf 1",
+                        name: "4 Level 2 Leaf 1",
                         childs: [
                             {
-                                name: "Level 3 Leaf 1"
+                                name: "7 Level 3 Leaf 1"
                             },
                             {
-                                name: "Level 3 Leaf 2",
+                                name: "8 Level 3 Leaf 2",
                                 childs: [
                                     {
-                                        name: "Level 4 Leaf 1"
+                                        name: "9 Level 4 Leaf 1"
                                     }
                                 ]
                             }
                         ]
                     },
                     {
-                        name: "Level 2 Leaf 2"
+                        name: "5 Level 2 Leaf 2"
                     }
                 ]
             },
             {
-                name: "Level 1 Leaf 2",
+                name: "2 Level 1 Leaf 2",
                 childs: [
                     {
-                        name: "Level 2 Leaf 1"
+                        name: "6 Level 2 Leaf 1"
                     }
                 ]
             },
             {
-                name: "Level 1 Leaf 3"
+                name: "3 Level 1 Leaf 3"
             }
         ];
 
+       
 
         var tree = new minitree(data, {
             container: document.getElementById('container'),
-            marginLeft: 50
+            clickHandler: function (e) {
+                var target = (typeof (e.target) !== 'undefined') ? e.target : e.srcElement;
+                var isLeaf = this.isLeaf(target);
+            }
         });
     }
 </script>
