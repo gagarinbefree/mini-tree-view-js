@@ -1,0 +1,60 @@
+# mini-tree-view-js
+<b>mini-tree-view-js</b>
+<p>Get started:/p>
+
+&bull; C#
+
+&bull; JavaScript
+
+```javascript
+window.onload = function () {
+        var data = [
+            {
+                name: "1 Level 1 Leaf 1",
+                childs: [
+                    {
+                        name: "4 Level 2 Leaf 1",
+                        childs: [
+                            {
+                                name: "7 Level 3 Leaf 1"
+                            },
+                            {
+                                name: "8 Level 3 Leaf 2",
+                                childs: [
+                                    {
+                                        name: "9 Level 4 Leaf 1"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: "5 Level 2 Leaf 2"
+                    }
+                ]
+            },
+            {
+                name: "2 Level 1 Leaf 2",
+                childs: [
+                    {
+                        name: "6 Level 2 Leaf 1"
+                    }
+                ]
+            },
+            {
+                name: "3 Level 1 Leaf 3"
+            }
+        ];
+
+        var tree = new minitree(data, {
+            container: document.getElementById('container'),
+            clickHandler: function (e) {
+                var target = (typeof (e.target) !== 'undefined') ? e.target : e.srcElement;
+                var isLeaf = this.isLeaf(target);
+            }
+        });
+    }
+```
+
+
+
