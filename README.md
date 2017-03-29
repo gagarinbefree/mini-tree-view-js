@@ -1,5 +1,5 @@
 # mini-tree-view-js
-<b>mini-tree-view-js</b>
+<b>Minimalistic javascript tree view</b>
 <p>Get started:</p>
 
 &bull; JavaScript
