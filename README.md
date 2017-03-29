@@ -2,8 +2,6 @@
 <b>mini-tree-view-js</b>
 <p>Get started:/p>
 
-&bull; C#
-
 &bull; JavaScript
 
 ```javascript
