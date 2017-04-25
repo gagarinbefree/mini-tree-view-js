@@ -27,7 +27,7 @@ window.onload = function () {
                 container: document.getElementById('container'),
                 clickHandler: function (e) {
                         var target = (typeof (e.target) !== 'undefined') ? e.target : e.srcElement;
-                        var isLeaf = this.isLeaf(target);
+                        // ... //
                 }
         });
 }
